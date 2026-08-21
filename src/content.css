@@ -1,0 +1,78 @@
+/*
+ * *** THE BUTTON, STYLED AGAINST A PAGE THAT DOES NOT KNOW IT IS THERE. ***
+ *
+ * Steam's inventory is a React app with hashed class names (`_3QKUrmKA1DptBhihc8GSAF`), so nothing
+ * here can hook their design system and nothing of theirs targets `.skinhub-inspect`. What their
+ * stylesheet CAN reach is the ELEMENT — there are global `button` rules on steamcommunity.com — so
+ * every property that decides how this looks is declared, rather than inherited and hoped for.
+ *
+ * *** THE METRICS ARE THEIRS, THE COLOUR IS OURS, and that split is the owner's instruction. ***
+ * Measured off the real "Inspect in Game..." anchor on a live inventory panel (2026-08-21):
+ * height 24px, padding 0 12px, border-radius 2px, 12px/16px Motiva Sans, background rgb(61,68,80).
+ * Matching the first four is what makes ours sit in the row as a sibling instead of beside it as a
+ * bolt-on; the fifth is what makes it ours.
+ */
+
+.skinhub-inspect {
+	/* `--skinhub-primary` IS `--primary` FROM `apps/web/app/globals.css`, RESOLVED TO sRGB.
+	   The app declares it as `oklch(0.8742 0.2426 149.118)` and its foreground as
+	   `oklch(0.25 0.06 149.118)`. This file cannot import a Tailwind token — it is injected into
+	   somebody else's document — so the token is restated once, here, with its source named. If the
+	   brand colour moves in `globals.css`, it moves here too and nowhere else in this extension. */
+	--skinhub-primary: #17ff74;
+	--skinhub-primary-foreground: #072911;
+
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	box-sizing: border-box;
+	height: 24px;
+	min-width: fit-content;
+	margin: 0;
+	padding: 0 10px;
+	border: 0;
+	border-radius: 2px;
+	background: var(--skinhub-primary);
+	color: var(--skinhub-primary-foreground);
+	font:
+		700 12px / 16px "Motiva Sans",
+		Twemoji,
+		"Noto Sans",
+		Helvetica,
+		sans-serif;
+	letter-spacing: 0.02em;
+	text-decoration: none;
+	text-transform: none;
+	white-space: nowrap;
+	cursor: pointer;
+	transition:
+		filter 120ms ease,
+		transform 120ms ease;
+}
+
+.skinhub-inspect:hover {
+	filter: brightness(1.12);
+}
+
+.skinhub-inspect:active {
+	transform: translateY(1px);
+}
+
+.skinhub-inspect:focus-visible {
+	outline: 2px solid var(--skinhub-primary);
+	outline-offset: 2px;
+}
+
+/* The knife out of the SkinHub wordmark, drawn in the button's own text colour so the mark and the
+   label can never disagree. `apps/web/public/logo.webp` is the source; the path was traced off it. */
+.skinhub-inspect svg {
+	display: block;
+	height: 13px;
+	width: auto;
+	fill: currentColor;
+	flex: none;
+}
+
+/* THE ROW WRAPS. Steam's actions container is a flex row with `--wrap: wrap`, so on a narrow panel
+   our button drops to a second line rather than pushing theirs off the edge — which is the behaviour
+   their own layout already chose, and nothing here overrides it. */
