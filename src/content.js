@@ -1,6 +1,6 @@
 /*
  * ═══════════════════════════════════════════════════════════════════════════════════════════════
- * *** "INSPECT IN SKINHUB" — the whole extension, in one content script. ***
+ * *** "INSPECT IN 3D" — the whole extension, in one content script. ***
  *
  * WHAT IT DOES: finds Steam's own "Inspect in Game..." link on an item panel, puts our button
  * immediately after it, and on click opens `<origin>/inspect?…` in an overlay on the Steam page.
@@ -147,7 +147,7 @@
 		button.type = 'button'
 		button.className = 'skinhub-inspect'
 		button.setAttribute(FLAG, '1')
-		button.innerHTML = `${MARK}<span>Inspect in SkinHub</span>`
+		button.innerHTML = `${MARK}<span>Inspect in 3D</span>`
 		button.addEventListener('click', event => {
 			event.preventDefault()
 			/*

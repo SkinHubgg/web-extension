@@ -1,0 +1,13 @@
+# macOS Finder metadata. It is not just repo noise here: this directory IS the extension, so
+# anything sitting in it gets zipped into the store upload, and a .DS_Store carries the folder's
+# view settings and the names of files you deleted before publishing.
+.DS_Store
+
+# The packaged upload itself. Built from this tree by `store/` - see PUBLISHING.md - and rebuilt
+# every time, so a committed copy is only ever a stale one.
+*.zip
+*.crx
+*.pem
+
+# Nothing here has a build step today, but a stray install should never land in the upload.
+node_modules/
